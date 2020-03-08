@@ -38,6 +38,12 @@ with open("Kakaotalk.nlp",'w', encoding='utf-8') as fp:
 
 #Word2Vec 모델 만들기
 wData = word2vec.LineSentence("Kakaotalk.nlp")
-wModel =word2vec.Word2Vec(wData, size=200, window=10, hs=1, min_count=2, sg=1)
+wModel =word2vec.Word2Vec(wData, size=200, window=4, hs=1, min_count=2, sg=1)
 wModel.save("Kakaotalk.model")
 print("Word2Vec Modeling finished")
+
+# size -> n차원벡터로 변경
+# window -> 주변 단어는 앞뒤로 n개 
+# min_count -> 출현 빈도는 n개 미만은 제외 
+# sg -> CBOW와 Skip-Gram 중 Skip-Gram 선택
+# hs -> hs가 1이면 softmax를 트레이닝할때 사용. 0이면 0이 아닌경우 음수로 샘플링
